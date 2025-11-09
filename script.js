@@ -3,7 +3,7 @@
 //    { src: 'https://owncloud.cesnet.cz/index.php/s/YLCjpWa5L02yc9S/download', description: 'Postoj strom, údery dlaní' },
 //    { src: 'https://owncloud.cesnet.cz/index.php/s/YLCjpWa5L02yc9S/download', description: 'Postoj jezdce na koni' }
 //];
-
+        
 class VideoPlayer {
     constructor() {
         this.videoPlayer1 = document.getElementById('videoPlayer1');
@@ -20,55 +20,52 @@ class VideoPlayer {
         ];
         
         this.currentVideoIndex = 0;
-        this.isFirstVideoActive = true;
 
         this.setupEventListeners();
-        this.playNextVideo();
+        this.initializePlayer();
     }
 
     setupEventListeners() {
-        // Automatické přehrávání dalšího videa po skončení
         this.videoPlayer1.addEventListener('ended', () => this.playNextVideo());
         this.videoPlayer2.addEventListener('ended', () => this.playNextVideo());
         
-        // Navigační tlačítka
-        this.prevButton.addEventListener('click', () => this.manualNavigate(-1));
-        this.nextButton.addEventListener('click', () => this.manualNavigate(1));
+        this.prevButton.addEventListener('click', () => this.navigateVideo(-1));
+        this.nextButton.addEventListener('click', () => this.navigateVideo(1));
     }
 
-    manualNavigate(direction) {
-        // Ruční navigace s pozastavením automatického přehrávání
+    initializePlayer() {
+        // Nastavení prvního videa
+        this.videoPlayer1.src = this.videos[this.currentVideoIndex].src;
+        this.descriptionElement.textContent = this.videos[this.currentVideoIndex].description;
+        this.videoPlayer1.classList.add('active');
+    }
+
+    navigateVideo(direction) {
+        // Aktualizace indexu
         this.currentVideoIndex = (this.currentVideoIndex + direction + this.videos.length) % this.videos.length;
-        this.playNextVideo();
-    }
-
-    playNextVideo() {
-        const currentVideo = this.videos[this.currentVideoIndex];
         
-        // Výběr aktivního a neaktivního přehrávače
-        const activePlayer = this.isFirstVideoActive ? this.videoPlayer1 : this.videoPlayer2;
-        const inactivePlayer = this.isFirstVideoActive ? this.videoPlayer2 : this.videoPlayer1;
+        // Přepnutí videí
+        const activePlayer = document.querySelector('.video-player.active');
+        const inactivePlayer = document.querySelector('.video-player:not(.active)');
 
-        // Nastavení zdroje a popisu
-        inactivePlayer.src = currentVideo.src;
-        this.descriptionElement.textContent = currentVideo.description;
+        // Nastavení nového zdroje a popisu
+        inactivePlayer.src = this.videos[this.currentVideoIndex].src;
+        this.descriptionElement.textContent = this.videos[this.currentVideoIndex].description;
 
-        // Prolnutí videí
+        // Prolnutí
         activePlayer.classList.remove('active');
         inactivePlayer.classList.add('active');
 
         // Spuštění nového videa
         inactivePlayer.play();
+    }
 
-        // Posun na další video pro automatické přehrávání
-        this.currentVideoIndex = (this.currentVideoIndex + 1) % this.videos.length;
-        
-        // Přepnutí příznaku aktivního videa
-        this.isFirstVideoActive = !this.isFirstVideoActive;
+    playNextVideo() {
+        this.navigateVideo(1);
     }
 }
 
-// Inicializace přehrávače po načtení stránky
+// Inicializace přehrávače
 document.addEventListener('DOMContentLoaded', () => {
     new VideoPlayer();
 });
