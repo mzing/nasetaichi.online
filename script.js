@@ -16,7 +16,8 @@ class VideoPlayer {
             { src: 'https://owncloud.cesnet.cz/index.php/s/wb3myaeLHvZ4Mk1/download', description: 'Kop patou' },
             { src: 'https://owncloud.cesnet.cz/index.php/s/YLCjpWa5L02yc9S/download', description: 'Postoj jezdce na koni' },
             { src: 'https://owncloud.cesnet.cz/index.php/s/vjCYzwc1nhhRZD1/download', description: 'Meditace' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/GI3eeux2DTYTuFq/download', description: 'Zavěšení' }
+            { src: 'https://owncloud.cesnet.cz/index.php/s/GI3eeux2DTYTuFq/download', description: 'Zavěšení' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/fNvCGv5v2OvGeiX/download', description: 'Začátek osmičky' }  
         ];
         
         this.currentVideoIndex = 0;
