@@ -13,10 +13,10 @@ class VideoPlayer {
         this.nextButton = document.getElementById('nextButton');
         
         this.videos = [
-            { src: 'https://owncloud.cesnet.cz/index.php/s/wb3myaeLHvZ4Mk1/download', description: 'Kop patou' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/YLCjpWa5L02yc9S/download', description: 'Postoj jezdce na koni' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/vjCYzwc1nhhRZD1/download', description: 'Meditace' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/GI3eeux2DTYTuFq/download', description: 'Zavěšení' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/LoOW6Af0G9jOqKd/download', description: 'Sestava 8 pohybů' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/0Po5o3fSUnFX0Z8/download', description: 'Sestava 13 pohybů' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/7xySm9rMzcUxJrA/download', description: 'Zvedání rukou' },  
+            { src: 'https://owncloud.cesnet.cz/index.php/s/vjCYzwc1nhhRZD1/download', description: 'Meditace' },  
             { src: 'https://owncloud.cesnet.cz/index.php/s/fNvCGv5v2OvGeiX/download', description: 'Začátek osmičky' }  
         ];
         
