@@ -17,7 +17,8 @@ class VideoPlayer {
             { src: 'https://owncloud.cesnet.cz/index.php/s/0Po5o3fSUnFX0Z8/download', description: 'Sestava 13 pohybů' },
             { src: 'https://owncloud.cesnet.cz/index.php/s/7xySm9rMzcUxJrA/download', description: 'Zvedání rukou' },  
             { src: 'https://owncloud.cesnet.cz/index.php/s/vjCYzwc1nhhRZD1/download', description: 'Meditace' },  
-            { src: 'https://owncloud.cesnet.cz/index.php/s/fNvCGv5v2OvGeiX/download', description: 'Začátek osmičky' }  
+            { src: 'https://owncloud.cesnet.cz/index.php/s/fNvCGv5v2OvGeiX/download', description: 'Začátek osmičky' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/JRXX61tYHLpTHJr/download', description: 'Začátek třináctky' }
         ];
         
         this.currentVideoIndex = 0;
