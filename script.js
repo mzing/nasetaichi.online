@@ -18,7 +18,7 @@ class VideoPlayer {
             { src: 'https://owncloud.cesnet.cz/index.php/s/fNvCGv5v2OvGeiX/download', description: 'Začátek osmičky' },
             { src: 'https://owncloud.cesnet.cz/index.php/s/JRXX61tYHLpTHJr/download', description: 'Začátek třináctky' },
             { src: 'https://owncloud.cesnet.cz/index.php/s/ahkWTd6gmhZ3Qbr/download', description: '13 forem' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/8lu87QoUAWe1E4Q/download', description: 'Meditace' }
+            { src: 'https://owncloud.cesnet.cz/index.php/s/8lu87QoUAWe1E4Q/download', description: 'Meditace s dlaněmi v sedě' }
         ];
         
         this.currentVideoIndex = 0;
