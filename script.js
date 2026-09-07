@@ -23,7 +23,7 @@ class VideoPlayer {
             { src: 'https://owncloud.cesnet.cz/index.php/s/7s1IasL146dwogW/download', description: 'Meditace s dlaněmi v sedě' }
         ];
 
-        this.currentVideoIndex = 0;
+       this.currentVideoIndex = 0;
         this.loadWatchdog = null;
 
         this.setupEventListeners();
