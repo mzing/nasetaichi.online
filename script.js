@@ -14,13 +14,13 @@ class VideoPlayer {
         this.retryButton = document.getElementById('retryButton');
 
         this.videos = [
-            { src: 'https://owncloud.cesnet.cz/index.php/s/LoOW6Af0G9jOqKd/download', description: 'Sestava 8 pohybů' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/7xySm9rMzcUxJrA/download', description: 'Zvedání rukou' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/fNvCGv5v2OvGeiX/download', description: 'Začátek osmičky' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/JRXX61tYHLpTHJr/download', description: 'Začátek třináctky' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/0XEzgtD05Wk2Pik/download', description: '13 forem' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/nI86GnvzM4LUaFe/download', description: '24 forem' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/8lu87QoUAWe1E4Q/download', description: 'Meditace s dlaněmi v sedě' }
+            { src: 'https://owncloud.cesnet.cz/index.php/s/aWirIUhh8S7g4H1/download', description: 'Sestava 8 pohybů' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/60g0u2gmYa1kBZm/download', description: 'Zvedání rukou' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/4YM4heF49orbeOR/download', description: 'Začátek osmičky' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/c8oqa7zLA9ppb14/download', description: 'Začátek třináctky' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/lKxgCi9godfUo7o/download', description: '13 forem' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/lD1pB5w8Fx8TjXo/download', description: '24 forem' },
+            { src: 'https://owncloud.cesnet.cz/index.php/s/7s1IasL146dwogW/download', description: 'Meditace s dlaněmi v sedě' }
         ];
 
         this.currentVideoIndex = 0;
