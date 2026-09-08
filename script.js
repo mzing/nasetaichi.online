@@ -14,16 +14,16 @@ class VideoPlayer {
         this.retryButton = document.getElementById('retryButton');
 
         this.videos = [
-            { src: 'https://owncloud.cesnet.cz/index.php/s/aWirIUhh8S7g4H1/download', description: 'Sestava 8 pohybů' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/60g0u2gmYa1kBZm/download', description: 'Zvedání rukou' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/4YM4heF49orbeOR/download', description: 'Začátek osmičky' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/c8oqa7zLA9ppb14/download', description: 'Začátek třináctky' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/lKxgCi9godfUo7o/download', description: '13 forem' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/lD1pB5w8Fx8TjXo/download', description: '24 forem' },
-            { src: 'https://owncloud.cesnet.cz/index.php/s/7s1IasL146dwogW/download', description: 'Meditace s dlaněmi v sedě' }
+            { src: 'videa/sestava-8-pohybu.mp4', description: 'Sestava 8 pohybů' },
+            { src: 'videa/zvedani-rukou.mp4', description: 'Zvedání rukou' },
+            { src: 'videa/zacatek-osmicky.mp4', description: 'Začátek osmičky' },
+            { src: 'videa/zacatek-trinactky.mp4', description: 'Začátek třináctky' },
+            { src: 'videa/13-forem.mp4', description: '13 forem' },
+            { src: 'videa/24-forem.mp4', description: '24 forem' },
+            { src: 'videa/meditace-dlane.mp4', description: 'Meditace s dlaněmi v sedě' }
         ];
 
-       this.currentVideoIndex = 0;
+        this.currentVideoIndex = 0;
         this.loadWatchdog = null;
 
         this.setupEventListeners();
@@ -48,7 +48,7 @@ class VideoPlayer {
         });
 
         [this.videoPlayer1, this.videoPlayer2].forEach((player) => {
-            player.addEventListener('ended', () => this.playNextVideo());
+            player.addEventListener('ended', () => this.onVideoEnded(player));
             player.addEventListener('waiting', () => this.showSpinner());
             player.addEventListener('playing', () => this.onVideoPlaying());
             player.addEventListener('canplay', () => this.hideSpinner());
@@ -118,6 +118,28 @@ class VideoPlayer {
 
     playNextVideo() {
         this.navigateVideo(1);
+    }
+
+    onVideoEnded(player) {
+        // Pojistka proti falešnému "ended": přechod na další video jen tehdy,
+        // když video skutečně doběhlo na konec své (známé) délky.
+        const remaining = isFinite(player.duration)
+            ? player.duration - player.currentTime
+            : Infinity;
+        if (remaining > 1.5) {
+            // Stream se přerušil daleko před koncem — obnovíme od stejné pozice.
+            console.warn(`Předčasný konec (zbývá ${isFinite(remaining) ? remaining.toFixed(1) : '?'} s) — obnovuji stream.`);
+            const resumeAt = player.currentTime;
+            const onLoaded = () => {
+                player.removeEventListener('loadedmetadata', onLoaded);
+                player.currentTime = Math.max(0, resumeAt - 0.5);
+                player.play().catch(() => {});
+            };
+            player.addEventListener('loadedmetadata', onLoaded);
+            player.load();
+            return;
+        }
+        this.playNextVideo();
     }
 
     togglePlayPause() {
