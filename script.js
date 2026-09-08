@@ -104,6 +104,10 @@ class VideoPlayer {
         const activePlayer = this.activePlayer();
         const inactivePlayer = this.inactivePlayer();
 
+        // Zastavit odcházející video — jinak by dál běželo skryté a jeho
+        // "ended" by předčasně přepnul nově vybrané video.
+        activePlayer.pause();
+
         inactivePlayer.src = this.videos[this.currentVideoIndex].src;
         this.descriptionElement.textContent = this.videos[this.currentVideoIndex].description;
         this.updateChapterMenu();
@@ -121,6 +125,8 @@ class VideoPlayer {
     }
 
     onVideoEnded(player) {
+        // Ignorovat "ended" ze skrytého (neaktivního) přehrávače.
+        if (player !== this.activePlayer()) return;
         // Pojistka proti falešnému "ended": přechod na další video jen tehdy,
         // když video skutečně doběhlo na konec své (známé) délky.
         const remaining = isFinite(player.duration)
